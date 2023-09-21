@@ -1,0 +1,49 @@
+﻿<ui>
+	<css name="$Intuitions_IndicatorText">
+		<fontFamily value="$WWSDefaultFontBold"/>
+		<mouseEnabled value="false"/>
+		<mouseChildren value="false"/>
+		<fontSize value="13"/>
+		<marginText value="-3px|-3px|-6px|-5px"/>
+		<dropShadowFilter value="0 0 0x000000 0.7 2.0 2.0 1.0 1"/>
+		<selectable value="false"/>
+		<textColor value="0xFFFFFF"/>
+	</css>
+
+	<css name="$Intuitions_TextDefaultBoldNM">
+		<fontFamily value="$WWSDefaultFontBold"/>
+		<mouseEnabled value="false"/>
+		<mouseChildren value="false"/>
+		<fontSize value="15"/>
+		<marginText value="-3px|-3px|-6px|-5px"/>
+		<dropShadowFilter value="1 45 0x000000 1 2.0 2.0 0.5 1"/>
+		<selectable value="false"/>
+		<textColor value="0xFFFFFF"/>
+	</css>
+
+
+    <block className="Intuitions">
+		<bind name="controller" value="'lesta.api.UbModController'"/>
+		<bind name="var" value="{Intuitions_intuitionsNum: 0}"/>
+		<bind name="visible" value="Intuitions_intuitionsNum &gt; 0"/>
+		<bind name="stageSize"/>
+		<bind name="left" value="stageWidth / 2 + 350"/>
+		<bind name="top" value="stageHeight / 2 - 235"/>
+		<bind name="changeDispatch" value="Intuitions_intuitionsNum; 'Intuitions_evIntuitionsNumChanged'"/>
+		<block>
+			<style>
+				<position value="absolute"/>
+				<hitTest value="false"/>
+			</style>
+			<bind name="appear" value="'Intuitions_evIntuitionsNumChanged'; 0.2; 0; {alpha: 0, scaleX: 2, scaleY: 2}; {alpha: 1, scaleX: 1, scaleY: 1}; SC.Common.EASING_FUNCTIONS.IN_QUAD"/>
+			<block type="text">
+				<styleClass value="$Intuitions_TextDefaultBoldNM"/>
+				<styleClass value="$Intuitions_IndicatorText"/>
+				<style>
+					<fontSize value="18"/>
+				</style>
+				<bind name="text" value="Intuitions_intuitionsNum"/>
+			</block>
+		</block>
+    </block>
+</ui>
