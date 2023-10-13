@@ -8,7 +8,7 @@ class Intuitions:
         flash.setUbMarkup('IntuitionsUb.xml', 'IntuitionsUb.swf', 'Intuitions')
 
     def onBattleStart(self, *args):
-        entity = dataHub.getSingleEntity('selfVehicle')
+        entity = dataHub.getSingleEntity('alertIndication')
         self.indicationComponent = [component for component in entity.components.values() if component.className == 'alertIndication'][0]
         self.indicationComponent.evIntuitionActiveChanged.add(self.onIntuitionActiveChanged)
 

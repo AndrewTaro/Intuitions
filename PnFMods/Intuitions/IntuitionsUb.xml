@@ -3,44 +3,75 @@
 		<fontFamily value="$WWSDefaultFontBold"/>
 		<mouseEnabled value="false"/>
 		<mouseChildren value="false"/>
-		<fontSize value="13"/>
-		<marginText value="-3px|-3px|-6px|-5px"/>
-		<dropShadowFilter value="0 0 0x000000 0.7 2.0 2.0 1.0 1"/>
-		<selectable value="false"/>
-		<textColor value="0xFFFFFF"/>
-	</css>
-
-	<css name="$Intuitions_TextDefaultBoldNM">
-		<fontFamily value="$WWSDefaultFontBold"/>
-		<mouseEnabled value="false"/>
-		<mouseChildren value="false"/>
-		<fontSize value="15"/>
-		<marginText value="-3px|-3px|-6px|-5px"/>
+		<fontSize value="18"/>
+		<marginText value="-3px|-3px|-7px|-6px"/>
 		<dropShadowFilter value="1 45 0x000000 1 2.0 2.0 0.5 1"/>
 		<selectable value="false"/>
 		<textColor value="0xFFFFFF"/>
 	</css>
-
+	
+	<css name="$Intuitions_FontColorDefault">
+		<textColor value="0xFFFFFF"/>
+	</css>
+	
+	<css name="$Intuitions_FontColorWarning">
+		<textColor value="0xFFCC66"/>
+	</css>
+	
+	<css name="$Intuitions_FontColorDanger">
+		<textColor value="0xFF9933"/>
+	</css>
+	
+	<css name="$Intuitions_FontColorDeadMan">
+		<textColor value="0xFF6600"/>
+	</css>
 
     <block className="Intuitions">
 		<bind name="controller" value="'lesta.api.UbModController'"/>
 		<bind name="var" value="{Intuitions_intuitionsNum: 0}"/>
 		<bind name="visible" value="Intuitions_intuitionsNum &gt; 0"/>
 		<bind name="stageSize"/>
-		<bind name="left" value="stageWidth / 2 + 350"/>
-		<bind name="top" value="stageHeight / 2 - 235"/>
+		<bind name="left" value="stageWidth / 2 + 340 + 15"/>
+		<bind name="top" value="stageHeight / 2 - 226 - 15"/>
 		<bind name="changeDispatch" value="Intuitions_intuitionsNum; 'Intuitions_evIntuitionsNumChanged'"/>
 		<block>
 			<style>
 				<position value="absolute"/>
 				<hitTest value="false"/>
+				<align value="center|middle"/>
+				<width value="0px"/>
+				<height value="0px"/>
+				<marginTop value="-2px"/>
 			</style>
 			<bind name="appear" value="'Intuitions_evIntuitionsNumChanged'; 0.2; 0; {alpha: 0, scaleX: 2, scaleY: 2}; {alpha: 1, scaleX: 1, scaleY: 1}; SC.Common.EASING_FUNCTIONS.IN_QUAD"/>
-			<block type="text">
-				<styleClass value="$Intuitions_TextDefaultBoldNM"/>
-				<styleClass value="$Intuitions_IndicatorText"/>
+			
+			<!--Focus Icon-->
+			<block>
+				<bind name="colorTransform" value="{redMultiplier: 1, greenMultiplier: 1, blueMultiplier: 1, redOffset: 0, greenOffset:70,  blueOffset: 200}"/>
 				<style>
-					<fontSize value="18"/>
+					<backgroundImage value="bitmap:icon_visibility_priority"/>
+					<alpha value="0.7"/>
+					<position value="absolute"/>
+					<width value="32px"/>
+					<height value="32px"/>
+					<top value="50%"/>
+					<left value="50%"/>
+					<marginTop value="-50%"/>
+					<marginLeft value="-50%"/>
+				</style>
+			</block>
+			
+			<!--Focus Nums-->
+			<block type="text">
+				<styleClass value="$Intuitions_IndicatorText"/>
+				<bind name="class" value="	Intuitions_intuitionsNum &gt; 3 ? '$Intuitions_FontColorDeadMan' :
+											Intuitions_intuitionsNum &gt; 2 ? '$Intuitions_FontColorDanger' :
+											Intuitions_intuitionsNum &gt; 1 ? '$Intuitions_FontColorWarning' :
+											$Intuitions_FontColorDefault
+				"/>
+				<style>
+					<marginTop value="-1px"/>
+					<marginLeft value="-1px"/>
 				</style>
 				<bind name="text" value="Intuitions_intuitionsNum"/>
 			</block>
