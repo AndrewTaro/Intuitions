@@ -9,6 +9,8 @@ class Intuitions:
 
     def onBattleStart(self, *args):
         entity = dataHub.getSingleEntity('alertIndication')
+        if entity is None:
+            return
         self.indicationComponent = [component for component in entity.components.values() if component.className == 'alertIndication'][0]
         self.indicationComponent.evIntuitionActiveChanged.add(self.onIntuitionActiveChanged)
 
