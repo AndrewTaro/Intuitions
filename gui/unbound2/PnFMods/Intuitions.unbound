@@ -29,7 +29,7 @@
 		(var orangeToWhite:dict = "{redMultiplier: 1, greenMultiplier: 1, blueMultiplier: 1, redOffset: 0, greenOffset:70,  blueOffset: 200}")
 	)
 
-	#(bind visible "isIntuitionsActive")
+	(bind visible "isIntuitionsActive")
 
 	(style
 		(bind width "stageWidth")
