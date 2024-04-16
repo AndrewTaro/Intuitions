@@ -1,9 +1,9 @@
-(def constant INT_FONT_COLORS [
+(def constant INT_FONT_COLORS {
 	DEFAULT	: 0xEEEEEE,
 	WARNING	: 0xFFCC66,
 	DANGER	: 0xFF9933,
 	CRITICAL: 0xFF6600,
-])
+})
 
 (def constant INT_PARAMETER_KEY 'modIntuitions')
 
