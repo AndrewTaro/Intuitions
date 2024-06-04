@@ -5,17 +5,17 @@
 	CRITICAL: 0xFF6600,
 })
 
-(def constant INT_PARAMETER_KEY 'modIntuitions')
+(def constant INT_COMPONENT_KEY 'modIntuitions')
 
 
 (def element INT_Intuitions() layout=true
 	(scope
 		(macro STAGE_SIZE)
 
-		(var intuitionWatcher:gfx = "$datahub.getPrimWatcher(CC.parameter, '0_' + INT_PARAMETER_KEY)")
+		(var intuitionWatcher:gfx = "$datahub.getPrimWatcher(CC.mod_DataComponent, INT_COMPONENT_KEY)")
 		(var intuitionEntity:gfx = "intuitionWatcher.entity" (event "intuitionWatcher.event"))
 
-		(var dataComponent:gfx = "intuitionEntity ? intuitionEntity.dataComponent : null" (event "intuitionEntity.evAdded"))
+		(var dataComponent:gfx = "intuitionEntity ? intuitionEntity.mod_DataComponent : null" (event "intuitionEntity.evAdded"))
 		(var data:dict = "dataComponent ? dataComponent.data : null" (event "dataComponent.evDataChanged"))
 
 		(var intuitionsCount:number = "data ? data.intuitionsCount : 0")
