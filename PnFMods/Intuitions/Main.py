@@ -2,11 +2,11 @@ API_VERSION = 'API_v1.0'
 MOD_NAME = 'Intuitions'
 
 try:
-    import events, dataHub, ui
+    import events, dataHub, ui, constants
 except:
     pass
 
-PARAMETER_ID = 'modIntuitions'
+COMPONENT_KEY = 'modIntuitions'
 
 class Intuitions:
     def __init__(self, *args):
@@ -17,16 +17,15 @@ class Intuitions:
         entity = dataHub.getSingleEntity('alertIndication')
         if entity is None:
             return
-        self.indicationComponent = [component for component in entity.components.values() if component.className == 'alertIndication'][0]
+        self.indicationComponent = entity[constants.UiComponents.alertIndication]
         self.indicationComponent.evIntuitionActiveChanged.add(self.onIntuitionActiveChanged)
 
         self.entityId = ui.createUiElement()
-        ui.addDataComponent(self.entityId, {'data': {'intuitionsCount': -1}})
-        ui.addParameterComponent(self.entityId, PARAMETER_ID)
+        ui.addDataComponentWithId(self.entityId, COMPONENT_KEY, {'intuitionsCount': -1})
 
     def onIntuitionActiveChanged(self, component):
         num = component.intuitionActive
-        ui.updateUiElementData(self.entityId, {'data': {'intuitionsCount': num}})
+        ui.updateUiElementData(self.entityId, {'intuitionsCount': num})
     
     def onBattleQuit(self, *args):
         try:
