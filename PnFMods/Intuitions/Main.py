@@ -28,11 +28,13 @@ class Intuitions:
         ui.updateUiElementData(self.entityId, {'intuitionsCount': num})
     
     def onBattleQuit(self, *args):
+        # Can be called when the client is shutting down, even without a battle!
         try:
             self.indicationComponent.evIntuitionActiveChanged.remove(self.onIntuitionActiveChanged)
+            ui.deleteUiElement(self.entityId)
+            self.indicationComponent = None
         except:
             pass
-        ui.deleteUiElement(self.entityId)
-        self.indicationComponent = None
+
 
 gIntuitions = Intuitions()
